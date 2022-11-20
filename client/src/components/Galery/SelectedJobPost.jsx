@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import Styles from './Selected.css'
 import axios from 'axios';
 import qs from 'qs'
-
-
-
 export const SelectedJobPost = (props) => {
   
   function SaveDataToLocalStorage(data)
@@ -23,8 +20,8 @@ export const SelectedJobPost = (props) => {
       
 
     e.preventDefault();
-    const name =  window.localStorage.getItem('name'); 
-    const userId =  window.localStorage.getItem('userId'); 
+    const name =  window.sessionStorage.getItem('name'); 
+    const userId =  window.sessionStorage.getItem('userId'); 
 
     const params = qs.stringify({
       username: "DuBot",
@@ -35,15 +32,25 @@ export const SelectedJobPost = (props) => {
       'content-type': 'application/json'
     };
   axios.post(
-      'https://discord.com/api/webhooks/1042871202819100673/vyfwuovMvYD5ZzdGnHwpDGG0Sj5piWZcDWvRQou_-8Al2aLGTyQy8wCMtBAP_evv7J04',
+    "https://discord.com/api/webhooks/1042871202819100673/vyfwuovMvYD5ZzdGnHwpDGG0Sj5piWZcDWvRQou_-8Al2aLGTyQy8wCMtBAP_evv7J04",
       params,
       headers2
     ).then(result => {
   
   console.log(result.data)
     })
+  }else{
+    if (props.jobId == 0){
+      alert("Invalid job please choose a new job")
+
+    }else{
+      alert("You already applied to this job")
+
+    }
+
+
   }
-  };
+  }
 
 
 

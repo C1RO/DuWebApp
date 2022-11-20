@@ -6,16 +6,15 @@ import axios from 'axios';
 
 
 
-
 export const SideMenu = ({ setPage }) => {
-    const [currentPage, setButton] = useState("/");
+    const [currentPage, setButton] = useState("/DevelopersUnion");
     const [soundJobData, setSoundJobData] = useState()
     const [scriptJobData, setscriptJobData] = useState()
     const [modelingJobData, setmodelingJobData] = useState()
     const [animationJobData, setanimationJobData] = useState()
     const [buildingJobData, setbuildingJobData] = useState()
-
-    const DataAcessMasterKey = "$2b$10$XoPlUfOuBJYwZB6FKD4/gu4iDf.AHgEMtcLb8IexyJ1BvpPPPOci."
+  
+    
         const fetchData = async () => {
         const Data = await axios.get("https://dudatabase-5285e-default-rtdb.firebaseio.com/JobsData.json?auth=VC1KL0hRZOLdQYoGpiu7pfJO3IRA4EkMBroRRoXW")
            console.log(Data)
@@ -26,31 +25,31 @@ export const SideMenu = ({ setPage }) => {
            setmodelingJobData(Object.values(Data.data.Data.ModelingJobs));
            setanimationJobData(Object.values(Data.data.Data.AnimationJobs)); 
            setbuildingJobData(Object.values(Data.data.Data.BuildingJobs)); 
-           setPage(Object.values(Data.data.Data.ScriptingJobs))
-          
+           setPageHandler(Object.values(Data.data.Data.ScriptingJobs) , "/DevelopersUnion")
+
 
         }
-
 
 
     }
     useEffect(() => {
 
         fetchData()
-    }, [])
 
+    }, [])
 
     function setPageHandler(data, to) {
         setPage(data)
         setButton(to)
     }
+  
     return (
         <nav className='Container'>
                   
 
 
-            <Link to="/">
-                <button className={currentPage === "/" ? "Active" : "button"} id="active" onClick={() => setPageHandler(scriptJobData , "/")}>
+            <Link to="/DevelopersUnion">
+                <button className={currentPage === "/DevelopersUnion" ? "Active" : "button"} id="active" onClick={() => setPageHandler(scriptJobData , "/DevelopersUnion")}>
 
                     Scripting
                 </button>
